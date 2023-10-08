@@ -9,12 +9,7 @@ from pytrends.request import TrendReq
 #parse trendquestresults for keywords\/
 from urllib.parse import urlparse, parse_qs
 #run terminal and open stablediffusion\/
-import subprocess
-
-
-subprocess.Popen(["/Users/vincentgyurgyik/stable-diffusion-webui/webui.sh"])
-
-time.sleep(10)
+import os
 
 url = 'http://127.0.0.1:7860/'
 
@@ -48,12 +43,29 @@ generate_button = driver.find_element("id", 'txt2img_generate')
 generate_button.click()
 
 #closes browser after () seconds
-#time.sleep(30)
+time.sleep(45)
 
 #or can use input
-input("Press Enter to close the browser...") 
+#input("Press Enter to close the browser...") 
 
 # ... Perform other interactions as needed ...
+
+
+def kill_server_on_port(port):
+    # Find the PID associated with the server on the specified port
+    pid_command = f'lsof -i :{port} | grep LISTEN | awk \'{{print $2}}\''
+    pid = os.popen(pid_command).read().strip()
+    
+    if pid:
+        # Kill the server using the PID
+        os.system(f'kill {pid}')
+        print(f'Server on port {port} (PID: {pid}) has been terminated.')
+    else:
+        print(f'No server found running on port {port}.')
+
+# Call the function to kill the server on port 7860
+kill_server_on_port(7860)
+
 
 # Close the browser
 driver.quit()
