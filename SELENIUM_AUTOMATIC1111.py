@@ -26,14 +26,45 @@ trendingtoday.head(3)
 
 urls = trendingtoday[:3].tolist()
 
-
 keywords = ', '.join([parse_qs(urlparse(url).query)['q'][0] for url in urls])
-print(keywords)
+
+# Generate the HTML content with the current keywords
+html_content = f"""
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Daily Image Viewer</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <div id="image-container">
+        <img id="daily-image" src="" alt="Daily Image">
+        <p id="keywords">{keywords}</p> <!-- Update with the current keywords -->
+    </div>
+    <a href="gallery.html">View Gallery</a>
+
+    <script>
+        const keywords = "{keywords}";  // This will be replaced by Python
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
+"""
+
+# Write the HTML content to the index.html file
+with open('index.html', 'w') as index_file:
+    index_file.write(html_content)
+
+print("index.html updated with the current keywords.")
+
+
+
 
 textarea = WebDriverWait(driver, 10).until(
     EC.presence_of_element_located((By.CSS_SELECTOR,
      'textarea[data-testid="textbox"]'))
 )
+
 
 # Send keys to the textarea
 textarea.send_keys(keywords)  # Replace with the text you want to enter

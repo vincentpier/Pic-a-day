@@ -14,7 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const currentDate = getCurrentDate();
         const imageUrl = `images/${currentDate}.png`;
         const imageElement = document.getElementById('daily-image');
+        const keywordsElement = document.getElementById('keywords');
         imageElement.src = imageUrl;
+        keywordsElement.innerText = `Prompt: ${keywords} Date: ${currentDate}`;
     };
 
     // Call the function to display the image for the current date
