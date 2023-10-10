@@ -46,7 +46,7 @@ html_content = f"""
     <script>
         const keywords = "{keywords}";  // This will be replaced by Python
     </script>
-    <script src="script.js"></script>
+    <script src="script-index.js"></script>
 </body>
 </html>
 """
