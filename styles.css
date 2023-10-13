@@ -1,19 +1,45 @@
 body {
+    font-family: Arial, sans-serif;
     text-align: center;
-    margin: 20px;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
 }
 
+/* index.html------------------------------ */
 #image-container {
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     border: 1px solid #ccc;
-    padding: 10px;
+    padding: 20px;
     border-radius: 10px;
     background-color: #f9f9f9;
+    max-width: 80%;
+    margin: 0 auto;
 }
+
 
 #daily-image {
     max-width: 100%;
     height: auto;
+}
+
+.keywords {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+a {
+    display: block;
+    margin-top: 20px;
+    font-size: 16px;
+    text-decoration: none;
+    color: #007BFF;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 
@@ -21,14 +47,59 @@ h1 {
     text-align: center;
 }
 
+h1 {
+    font-size: 2em;
+    margin: 20px 0;
+    color: #333;
+}
+
+/* gallery html------------------------------ */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 .gallery img {
     width: 100%;
     height: auto;
     display: block;
+    border-radius: 10px;
+    cursor: pointer;
+    /* Change cursor to clicker */
+    transition: transform 0.3s;
+    /* Smooth transition on mouseover */
+}
+
+.gallery img:hover {
+    transform: scale(1.1);
+    /* Feedback on hover*/
+}
+
+.gallery p {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #555;
+}
+
+/* Lightbox */
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
 }

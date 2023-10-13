@@ -19,13 +19,15 @@ driver = webdriver.Chrome()
 # Open the website
 driver.get(url)
 
+# Get top (n) google trend searches in region (US) from pytrend
 pytrends = TrendReq()
-
+n = 3
 trendingtoday = pytrends.today_searches(pn='US')
-trendingtoday.head(3)
+trendingtoday.head(n)
 
-urls = trendingtoday[:3].tolist()
+urls = trendingtoday[:n].tolist()
 
+# Parse URL into keywords for prompt
 keywords = ', '.join([parse_qs(urlparse(url).query)['q'][0] for url in urls])
 
 # Generate the HTML content with the current keywords
@@ -59,21 +61,21 @@ print("index.html updated with the current keywords.")
 
 
 
-
+# Pause up to 10 seconds for textarea to load (specific CSS selector of textbox we want to modify)
 textarea = WebDriverWait(driver, 10).until(
     EC.presence_of_element_located((By.CSS_SELECTOR,
      'textarea[data-testid="textbox"]'))
 )
 
 
-# Send keys to the textarea
-textarea.send_keys(keywords)  # Replace with the text you want to enter
+# Send parsed keywords to the textarea
+textarea.send_keys(keywords)
 
 # Find and click the "Generate" button
 generate_button = driver.find_element("id", 'txt2img_generate')
 generate_button.click()
 
-#closes browser after () seconds
+# Pause for () seconds before closing browser
 time.sleep(45)
 
 #or can use input
@@ -81,7 +83,7 @@ time.sleep(45)
 
 # ... Perform other interactions as needed ...
 
-
+# Kill server, right now we are using same server everytime 127.0.0.1:7860
 def kill_server_on_port(port):
     # Find the PID associated with the server on the specified port
     pid_command = f'lsof -i :{port} | grep LISTEN | awk \'{{print $2}}\''

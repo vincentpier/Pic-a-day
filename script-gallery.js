@@ -1,19 +1,33 @@
 const getImageInfoForDate = async () => {
     const today = new Date();
     const imageInfoArray = [];
+    const NUM_OF_DAYS_TO_GO_BACK = 10;
 
-    // Fetch image info from the last 10 days - adjust if needed
-    for (let i = 1; i <= 10; i++) {
+    // Fetch image info from the last 10 days - adjust if needed with NUM_OF_DAYS_TO_GO_BACK 
+    for (let i = 1; i <= NUM_OF_DAYS_TO_GO_BACK; i++) {
         const date = new Date(today);
         date.setDate(today.getDate() - i);
         const dateString = date.toISOString().split('T')[0];
         const imageUrl = `images/${dateString}.png`;
         const keywords = localStorage.getItem(dateString) || 'No keywords available'; // Get keywords for the date
-
-        imageInfoArray.push({ imageUrl, keywords, date: dateString });
+        //Check if image exists, only push if it does (If NUM_OF_DAYS_TO_GO_BACK is greater than images in folder)
+        const imageExists = await checkImageExists(imageUrl);
+        if (imageExists) {
+            const keywords = localStorage.getItem(dateString) || 'No keywords available';
+            imageInfoArray.push({ imageUrl, keywords, date: dateString });
+        }
     }
 
     return imageInfoArray;
+};
+
+const checkImageExists = async (url) => {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => resolve(true);
+        img.onerror = () => resolve(false);
+        img.src = url;
+    });
 };
 
 const displayGallery = async () => {
@@ -32,10 +46,14 @@ const displayGallery = async () => {
         imgElement.src = imageUrl;
 
         const keywordsElement = document.createElement('p');
-        keywordsElement.innerText = `Keywords: ${keywords}`;
+        keywordsElement.innerText = `Prompt: ${keywords}`;
 
         const dateElement = document.createElement('p');
         dateElement.innerText = `Date: ${date}`;
+
+        imgElement.addEventListener('click', () => {
+            displayLightbox(imageUrl);
+        });
 
         imgContainer.appendChild(imgElement);
         imgContainer.appendChild(keywordsElement);
@@ -44,6 +62,22 @@ const displayGallery = async () => {
         galleryContainer.appendChild(imgContainer);
     });
 };
+
+//Full-size view on click
+const displayLightbox = (imageUrl) => {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    lightboxImg.src = imageUrl;
+    lightbox.style.display = 'flex';
+};
+
+// Close the lightbox
+const closeLightbox = () => {
+    const lightbox = document.getElementById('lightbox');
+    lightbox.style.display = 'none';
+};
+
 
 document.addEventListener('DOMContentLoaded', () => {
     displayGallery();

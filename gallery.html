@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Image Gallery</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
+
 <body>
     <h1>Image Gallery</h1>
 
     <div class="gallery" id="gallery-container">
-        <!-- Images and keywords will be displayed here -->
+        <!-- Images and prompts (keywords) will be displayed here -->
+    </div>
+
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <img id="lightbox-img" src="" alt="Lightbox Image">
+        <!-- Full-size view -->
     </div>
 
     <script src="script-gallery.js"></script>
 </body>
+
 </html>
