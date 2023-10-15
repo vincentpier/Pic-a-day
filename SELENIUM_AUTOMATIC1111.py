@@ -2,13 +2,13 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
-#timer to close page\/
+#timer to close page
 import time
-#get trending from google\/
+#get trending from google
 from pytrends.request import TrendReq
-#parse trendquestresults for keywords\/
+#parse trendquestresults for keywords
 from urllib.parse import urlparse, parse_qs
-#run terminal and open stablediffusion\/
+#run terminal and open stablediffusion
 import os
 
 url = 'http://127.0.0.1:7860/'
@@ -76,7 +76,7 @@ generate_button = driver.find_element("id", 'txt2img_generate')
 generate_button.click()
 
 # Pause for () seconds before closing browser
-time.sleep(45)
+time.sleep(55)
 
 #or can use input
 #input("Press Enter to close the browser...") 

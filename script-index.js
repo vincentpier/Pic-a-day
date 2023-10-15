@@ -19,7 +19,7 @@ const displayDailyImage = () => {
     const storedItemsCount = localStorage.length;
 
 
-    const maxKeyValuePairs = 10; // Maximum number of key-value pairs to store - make sure to edit this number with fetch image loop in gallery
+    const maxKeyValuePairs = 20; // Maximum number of key-value pairs to store - make sure to edit this number with fetch image loop in gallery
 
 
     // If max number of kvp is reached, remove the oldest one

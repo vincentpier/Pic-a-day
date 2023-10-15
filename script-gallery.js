@@ -1,7 +1,7 @@
 const getImageInfoForDate = async () => {
     const today = new Date();
     const imageInfoArray = [];
-    const NUM_OF_DAYS_TO_GO_BACK = 10;
+    const NUM_OF_DAYS_TO_GO_BACK = 20;
 
     // Fetch image info from the last 10 days - adjust if needed with NUM_OF_DAYS_TO_GO_BACK 
     for (let i = 1; i <= NUM_OF_DAYS_TO_GO_BACK; i++) {
