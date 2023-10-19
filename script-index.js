@@ -1,4 +1,3 @@
-
 const getCurrentDate = () => {
     const date = new Date();
     const year = date.getFullYear();
@@ -14,6 +13,15 @@ const displayDailyImage = () => {
     const keywordsElement = document.getElementById('keywords');
     imageElement.src = imageUrl;
     keywordsElement.innerText = `Prompt: ${keywords} Date: ${currentDate}`;
+
+      // Add current date/prompt to csv
+const data = `"${keywords}",${currentDate},"${imageUrl}"\n`;
+
+fs.appendFile('/Users/vincentgyurgyik/Desktop/z_website/pastprompts.csv', data, (err) => {
+    if (err) {
+        console.error('Error appending to CSV:', err);
+    }
+});
 
     // Retrieve the current number of stored items
     const storedItemsCount = localStorage.length;
@@ -35,4 +43,3 @@ if (document.getElementById('image-container')) {
     // This is index.html
     displayDailyImage();
 }
-

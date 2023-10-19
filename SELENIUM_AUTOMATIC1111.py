@@ -10,6 +10,10 @@ from pytrends.request import TrendReq
 from urllib.parse import urlparse, parse_qs
 #run terminal and open stablediffusion
 import os
+#write in csv
+import csv
+#get date
+from datetime import date
 
 url = 'http://127.0.0.1:7860/'
 
@@ -102,3 +106,14 @@ kill_server_on_port(7860)
 
 # Close the browser
 driver.quit()
+
+# Get the current date
+currentDate = date.today().strftime("%Y-%m-%d")
+
+# Append the data to the CSV file
+with open('pastprompts.csv', mode='a', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerow([keywords, currentDate])
+
+print("Data appended to pastprompts.csv")
+
