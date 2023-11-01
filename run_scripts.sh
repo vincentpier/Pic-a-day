@@ -1,8 +1,5 @@
 #!/bin/bash
 
-#testing automation
-echo "Cron job started at $(date)" >> /Users/vincentgyurgyik/Desktop/z_website/cron.log
-
 # Path to webui.sh
 WEBUI_SCRIPT_PATH="/Users/vincentgyurgyik/stable-diffusion-webui/webui.sh"
 
