@@ -80,7 +80,7 @@ generate_button = driver.find_element("id", 'txt2img_generate')
 generate_button.click()
 
 # Pause for () seconds before closing browser
-time.sleep(55)
+time.sleep(60)
 
 #or can use input
 #input("Press Enter to close the browser...") 
