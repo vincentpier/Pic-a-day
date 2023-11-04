@@ -1,0 +1,5 @@
+index won't show daily photo if script not run -view index before running 
+local storage not feasible way to store prompts/dates (only local user sees it)
+logs empty
+launched not working
+sub shell ( ... ) &
