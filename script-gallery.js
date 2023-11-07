@@ -1,24 +1,45 @@
-const getImageInfoForDate = async () => {
-    const today = new Date();
-    const imageInfoArray = [];
-    const NUM_OF_DAYS_TO_GO_BACK = 40;
+const displayGallery = async () => {
+    //Get text off the "pastprompts.csv" file
+    const response = await fetch('pastprompts.csv');
+    const csvData = await response.text();
 
-    // Fetch image info from the last 10 days - adjust if needed with NUM_OF_DAYS_TO_GO_BACK 
-    for (let i = 1; i <= NUM_OF_DAYS_TO_GO_BACK; i++) {
-        const date = new Date(today);
-        date.setDate(today.getDate() - i);
-        const dateString = date.toISOString().split('T')[0];
-        const imageUrl = `images/${dateString}.png`;
-        const keywords = localStorage.getItem(dateString) || 'No keywords available'; // Get keywords for the date
-        //Check if image exists, only push if it does (If NUM_OF_DAYS_TO_GO_BACK is greater than images in folder)
-        const imageExists = await checkImageExists(imageUrl);
-        if (imageExists) {
-            const keywords = localStorage.getItem(dateString) || 'No keywords available';
-            imageInfoArray.push({ imageUrl, keywords, date: dateString });
+    const lines = csvData.split('\n').reverse(); //Newest to oldest
+
+    const galleryContainer = document.getElementById('gallery-container');
+
+    for (const line of lines) {
+        const parts = line.split(',');
+        if (parts.length >= 4) {
+            const keywords = parts.slice(0, -1).join(', '); //First three items as keywords
+            const date = parts[parts.length - 1];        //Last item date
+            const imageUrl = `images/${date}.png`;
+
+            const imageExists = await checkImageExists(imageUrl);
+            if (imageExists) {
+                const imgContainer = document.createElement('div');
+                imgContainer.classList.add('image-container');
+
+                const imgElement = document.createElement('img');
+                imgElement.src = imageUrl;
+
+                const keywordsElement = document.createElement('p');
+                keywordsElement.innerText = `Keywords: ${keywords}`;
+
+                const dateElement = document.createElement('p');
+                dateElement.innerText = `Date: ${date}`;
+
+                imgElement.addEventListener('click', () => {
+                    displayLightbox(imageUrl);
+                });
+
+                imgContainer.appendChild(imgElement);
+                imgContainer.appendChild(keywordsElement);
+                imgContainer.appendChild(dateElement);
+
+                galleryContainer.appendChild(imgContainer);
+            }
         }
     }
-
-    return imageInfoArray;
 };
 
 const checkImageExists = async (url) => {
@@ -30,38 +51,6 @@ const checkImageExists = async (url) => {
     });
 };
 
-const displayGallery = async () => {
-    const imageInfoArray = await getImageInfoForDate();
-
-    const galleryContainer = document.getElementById('gallery-container');
-
-    // Go through image info and create elements for each image
-    imageInfoArray.forEach(imageInfo => {
-        const { imageUrl, keywords, date } = imageInfo;
-
-        const imgContainer = document.createElement('div');
-        imgContainer.classList.add('image-container');
-
-        const imgElement = document.createElement('img');
-        imgElement.src = imageUrl;
-
-        const keywordsElement = document.createElement('p');
-        keywordsElement.innerText = `Prompt: ${keywords}`;
-
-        const dateElement = document.createElement('p');
-        dateElement.innerText = `Date: ${date}`;
-
-        imgElement.addEventListener('click', () => {
-            displayLightbox(imageUrl);
-        });
-
-        imgContainer.appendChild(imgElement);
-        imgContainer.appendChild(keywordsElement);
-        imgContainer.appendChild(dateElement);
-
-        galleryContainer.appendChild(imgContainer);
-    });
-};
 
 //Full-size view on click
 const displayLightbox = (imageUrl) => {

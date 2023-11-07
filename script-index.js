@@ -13,22 +13,6 @@ const displayDailyImage = () => {
     const keywordsElement = document.getElementById('keywords');
     imageElement.src = imageUrl;
     keywordsElement.innerText = `Prompt: ${keywords} Date: ${currentDate}`;
-
-    // Retrieve the current number of stored items
-    const storedItemsCount = localStorage.length;
-
-
-    const maxKeyValuePairs = 40; // Maximum number of key-value pairs to store - make sure to edit this number with fetch image loop in gallery
-
-
-    // If max number of kvp is reached, remove the oldest one
-    if (storedItemsCount >= maxKeyValuePairs) {
-        const oldestKey = localStorage.key(0);
-        localStorage.removeItem(oldestKey);
-    }
-
-    // Store keywords for the current date in localStorage - key value pairs
-    localStorage.setItem(currentDate, keywords);
 };
 if (document.getElementById('image-container')) {
     // This is index.html

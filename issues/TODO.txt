@@ -1,0 +1,10 @@
+issues
+____________________________________
+index won't show daily photo if script not run -view index before running 
+logs empty
+launched not working
+sub shell ( ... ) &
+
+TODO 
+____________________________________
+remove imageCheck?
