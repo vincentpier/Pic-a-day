@@ -1,32 +1,28 @@
 # Pic-a-day
 
-
 ## Description
 
-	This repository allows the user to run a script that will open stable diffusion on a local server, get the top (n) trending words from google trends for the day, parse them into keywords, put them into the stable diffusion textbox and generate an image using the keywords as the prompt. It will then close the local server, and append the keywords to a csv file. Along with this is a rudimentary website that will show the daily image along with the date and prompts, and a gallery accessible via hyperlink that will host all prior entries. Images are saved locally in the images folder. I set the repository up this way so that everything could be run automatically once a day using a launchd, a script management system for Mac.
+### This repository allows the user to run a script that will open stable diffusion on a local server, get the top (n) trending words from google trends for the day, parse them into keywords, put them into the stable diffusion textbox and generate an image using the keywords as the prompt. It will then close the local server, and append the keywords to a csv file. Along with this is a rudimentary website that will show the daily image along with the date and prompts, and a gallery accessible via hyperlink that will host all prior entries. Images are saved locally in the images folder. I set the repository up this way so that everything could be run automatically once a day using a launchd, a script management system for Mac.
 
 ## Motivation
 
-	The project aims to streamline the generation and display of daily images based on current trending topics, providing a visual representation of daily internet trends.
+### The project aims to streamline the generation and display of daily images based on current trending topics, providing a visual representation of daily internet trends.
 
 ## Technical Details
 
-	The main script is written in Python and utilizes Selenium for web interactions, PyTrends for accessing Google Trends, and Stable Diffusion for image generation. Additionally, there is a Bash script responsible for coordinating the execution of various components, including launching a local server with Stable Diffusion and running the Python script. This allows the user to run everything automatically, through launchd on Mac. While untested, users can attempt to adapt the setup for Task Scheduler on Windows or cron on Linux or Mac.
+### The main script is written in Python and utilizes Selenium for web interactions, PyTrends for accessing Google Trends, and Stable Diffusion for image generation. Additionally, there is a Bash script responsible for coordinating the execution of various components, including launching a local server with Stable Diffusion and running the Python script. This allows the user to run everything automatically, through launchd on Mac. While untested, users can attempt to adapt the setup for Task Scheduler on Windows or cron on Linux or Mac.
 
-Tested on 2020 iMac 
+### Tested on 2020 iMac 
 	- Processor: 3.8 GHz 8-Core Intel Core i7 
 	- Graphics: AMD Radeon Pro 5500 XT 8 GB
 	- Memory: 64 GB 2667 MHz DDR4
 	- Operating system: macOS Sonoma 14.0
-
-
 
 ## Installation
 
 ### 1. Install an IDE so you can view/edit the website, script, and code. For this project I am using Visual Studio Code.
 	- https://code.visualstudio.com/download
 	
-
 ### 2. Python and Pip: 
 	- Make sure you have Python installed. You can download it from (https://www.python.org/downloads/).
 	- Ensure that pip, the Python package installer, is also installed.
@@ -76,21 +72,21 @@ Tested on 2020 iMac
 	- The gallery will be filled with prior images from when I ran the script. You can keep them, or delete the files in images 	and delete the text in pastprompts.csv to start fresh.
 
 ## Usage
-	### 1. Run script manually
-		- change directories to z_website
-		- ./run_scripts
+### 1. Run script manually
+	- change directories to z_website
+	- ./run_scripts
 
-	### 2. Run with launchd (Useful guide: [launchd.info](https://launchd.info/))
-		- create a XML file in Visual Studio Code
-		- use file name as the Label, the full path to ‘run_scripts.sh’ as the ProgramArguments, and include specific paths in 		EnvironmentVariables. (You can get these by changing directories to ‘stable-diffusion-webui’ and 
-		type the command: ‘echo $PATH’).
-		- Set your script to start at a specific time by using StartCalendarInterval
-		- save the file as a plist, and move plist to ~/Library/LaunchAgents/ (user-specific) or /Library/LaunchDaemons/ 		(system-wide/any user)
-		- in Terminal you can:
-		 		- load the script by typing launchctl load ~/Library/LaunchAgents/nameofyourscript.plist
-				- unload the script by typing launchctl unload ~/Library/LaunchAgents/nameofyourscript.plist
-				- start the script regardless of Start Variables (for testing) launchctl start nameofyourscript
-				- stop the script after you’ve started it launchctl stop nameofyourscript
+### 2. Run with launchd [Useful guide: launchd.info](https://launchd.info/)
+	- create a XML file in Visual Studio Code
+	- use file name as the Label, the full path to ‘run_scripts.sh’ as the ProgramArguments, and include specific paths in EnvironmentVariables. (You can get these by changing directories to ‘stable-diffusion-webui’ and type the command: ‘echo $PATH’).
+	- Set your script to start at a specific time by using StartCalendarInterval
+	- save the file as a plist, and move plist to ~/Library/LaunchAgents/ (user-specific) or /Library/LaunchDaemons/ (system-wide/any user)
+ #### launchd commands
+	- in Terminal you can:
+		 	- load the script by typing launchctl load ~/Library/LaunchAgents/nameofyourscript.plist
+			- unload the script by typing launchctl unload ~/Library/LaunchAgents/nameofyourscript.plist
+			- start the script regardless of Start Variables (for testing) launchctl start nameofyourscript
+			- stop the script after you’ve started it launchctl stop nameofyourscript
 				
 		
 ## Credits
