@@ -1,12 +1,9 @@
 issues
 ____________________________________
 index won't show daily photo if script not run -view index before running 
-logs empty
-launched not working
-sub shell ( ... ) &
 
 TODO 
 ____________________________________
 remove imageCheck?
-clean up folder, delete tests, test scripts, test .plists (unload from launch control) - delete from LaunchAgent
 add prompts/negative prompts to make image ouput appealing
+clean up readme, proper formatting
