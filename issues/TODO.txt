@@ -8,3 +8,5 @@ sub shell ( ... ) &
 TODO 
 ____________________________________
 remove imageCheck?
+clean up folder, delete tests, test scripts, test .plists (unload from launch control) - delete from LaunchAgent
+add prompts/negative prompts to make image ouput appealing

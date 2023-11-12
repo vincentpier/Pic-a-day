@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.stablescript</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/vincentgyurgyik/Desktop/z_website/run_scripts.sh</string>
+    </array>
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>17</integer>
+        <key>Minute</key>
+        <integer>38</integer>
+    </dict>
+    <key>EnvironmentVariables</key>
+<dict>
+    <key>StandardErrorPath</key>
+<string>/Users/vincentgyurgyik/Desktop/z_website/error.log</string>
+<key>StandardOutPath</key>
+<string>/Users/vincentgyurgyik/Desktop/z_website/standard.log</string>
+<key>PATH</key>
+       <string>/Users/vincentgyurgyik/opt/miniconda3/bin:/Users/vincentgyurgyik/opt/miniconda3/condabin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Library/Apple/usr/bin:/usr/local/share/dotnet:~/.dotnet/tools</string>
+</dict>
+</dict>
+</plist>

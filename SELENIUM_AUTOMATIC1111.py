@@ -79,7 +79,7 @@ textarea.send_keys(keywords)
 generate_button = driver.find_element("id", 'txt2img_generate')
 generate_button.click()
 
-# Pause for () seconds before closing browser
+# Pause for () seconds before closing browser. Increase this if computer needs longer to complete the image (less RAM)
 time.sleep(60)
 
 #or can use input

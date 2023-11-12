@@ -23,7 +23,7 @@ const displayGallery = async () => {
                 imgElement.src = imageUrl;
 
                 const keywordsElement = document.createElement('p');
-                keywordsElement.innerText = `Keywords: ${keywords}`;
+                keywordsElement.innerText = `Prompt: ${keywords}`;
 
                 const dateElement = document.createElement('p');
                 dateElement.innerText = `Date: ${date}`;
