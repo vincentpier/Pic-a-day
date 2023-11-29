@@ -10,7 +10,7 @@ const displayGallery = async () => {
     for (const line of lines) {
         const parts = line.split(',');
         if (parts.length >= 4) {
-            const keywords = parts.slice(0, -1).join(', '); //First three items as keywords
+            const keywords = parts.slice(0, -1).join(', '); //Extract keywords by slicing date, can handle extra commas i.e. "Beavertown, Ohio" as one keyword
             const date = parts[parts.length - 1];        //Last item date
             const imageUrl = `images/${date}.png`;
 

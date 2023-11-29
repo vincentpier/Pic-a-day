@@ -1,9 +1,11 @@
 issues
 ____________________________________
-index won't show daily photo if script not run -view index before running 
+4 commas? i.e. BEAVERCREEK, Ohio
 
 TODO 
 ____________________________________
 remove imageCheck?
 add prompts/negative prompts to make image ouput appealing
 clean up readme, proper formatting
+paginate -vue?
+return from gallery to index
