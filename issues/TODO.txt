@@ -1,6 +1,8 @@
 issues
 ____________________________________
 4 commas? i.e. BEAVERCREEK, Ohio
+plists in LaunchAgent, not in z_website. changes not pushed through.
+-7/30/2024-  plist edit time: 13:30-18:30
 
 TODO 
 ____________________________________
